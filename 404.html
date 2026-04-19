@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Not Found</title>
+  <style>
+    :root {
+      --navy: #1f2a38; /* dark desaturated navy */
+      --green: #7fa99b; /* desaturated green-teal */
+      --light: #ffffff;
+      --muted: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    h1 {
+      font-size: 6rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .accent {
+      margin-top: 2rem;
+      height: 4px;
+      width: 80px;
+      background: var(--green);
+      border-radius: 999px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .button:hover {
+      background: var(--green);
+      color: var(--navy);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 4rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/images/logo1.png" alt="Logo" class="logo">
+
+    <h1>404</h1>
+
+    <p>This page is not found or is on the way</p>
+
+    <div class="accent"></div>
+
+    <a href="/" class="button">Go Home</a>
+  </div>
+</body>
+</html>

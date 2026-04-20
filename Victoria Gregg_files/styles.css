@@ -1,0 +1,836 @@
+/* ============================================================
+   VICTORIA GREGG — ISLAND COUNSELLING GUERNSEY
+   styles.css  |  Easy-to-edit, well-commented stylesheet
+   ============================================================ */
+
+/* ============================================================
+   SECTION 1: CSS VARIABLES (change these to retheme the site)
+   ============================================================ */
+:root {
+  --white-color:                #ffffff;
+  --primary-color:              #002957;      /* Dark navy — headings, buttons */
+  --secondary-color:            #00b374;      /* Teal green — accents, footer bar */
+  --section-bg-color:           #E6F4F1;      /* Pale teal — form backgrounds */
+  --site-footer-bg-color:       #44525d;      /* Dark slate — footer background */
+  --custom-btn-bg-color:        #002957;
+  --custom-btn-bg-hover-color:  #3F5689;
+  --dark-color:                 #000000;
+  --p-color:                    #717275;
+  --border-color:               #e9eaeb;
+
+  --body-font-family:           'Jost', sans-serif;
+
+  --h1-font-size:               52px;
+  --h2-font-size:               46px;
+  --h3-font-size:               32px;
+  --h4-font-size:               28px;
+  --h5-font-size:               24px;
+  --h6-font-size:               22px;
+  --p-font-size:                16px;
+  --btn-font-size:              18px;
+  --copyright-font-size:        14px;
+
+  --border-radius-large:        100px;
+  --border-radius-medium:       20px;
+  --border-radius-small:        10px;
+
+  --font-weight-light:          300;
+  --font-weight-normal:         400;
+  --font-weight-semibold:       600;
+  --font-weight-bold:           700;
+
+  /* Animation timings */
+  --transition-fast:            0.2s ease;
+  --transition-normal:          0.3s ease;
+  --transition-slow:            0.5s ease;
+}
+
+/* ============================================================
+   SECTION 2: BASE / RESET
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--white-color);
+  font-family: var(--body-font-family);
+}
+
+/* Typography */
+h2, h3, h4, h5, h6 {
+  color: var(--dark-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -1px;
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -2px;
+}
+
+h2 {
+  color: var(--secondary-color);
+  font-size: var(--h2-font-size);
+  letter-spacing: -2px;
+}
+
+h3 { font-size: var(--h3-font-size); }
+h4 { font-size: var(--h4-font-size); }
+
+h5 {
+  color: var(--primary-color);
+  font-size: var(--h5-font-size);
+}
+
+h6 { font-size: var(--h6-font-size); }
+
+p {
+  color: var(--p-color);
+  font-size: var(--p-font-size);
+  font-weight: var(--font-weight-light);
+  line-height: 1.75;
+}
+
+ul li {
+  color: var(--p-color);
+  font-size: var(--p-font-size);
+  font-weight: var(--font-weight-normal);
+}
+
+a, button {
+  touch-action: manipulation;
+  transition: all var(--transition-normal);
+}
+
+a {
+  color: var(--p-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+b, strong {
+  font-weight: var(--font-weight-bold);
+}
+
+main {
+  min-height: 75vh;
+}
+
+em {
+  font-style: unset;
+}
+
+.w-100 { width: 100%; }
+
+/* ============================================================
+   SECTION 3: LAYOUT HELPERS
+   ============================================================ */
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.section-bg {
+  background-color: var(--section-bg-color);
+}
+
+/* Dark overlay for hero background images */
+.section-overlay {
+  background: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.section-overlay + .container {
+  position: relative;
+}
+
+/* ============================================================
+   SECTION 4: NAVIGATION
+   ============================================================ */
+.navbar {
+  background: var(--white-color);
+  z-index: 99;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: box-shadow var(--transition-normal);
+  position: sticky;
+  top: 0;
+}
+
+/* Extra shadow when scrolled (applied via JS) */
+.navbar.scrolled {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.navbar-brand {
+  color: var(--primary-color);
+  font-size: var(--h6-font-size);
+  font-weight: var(--font-weight-bold);
+}
+
+.navbar-brand span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-brand small {
+  color: var(--secondary-color);
+  display: block;
+  font-size: 10px;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: transform var(--transition-normal);
+}
+
+.navbar-brand:hover .logo {
+  transform: scale(1.05);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 20px;
+}
+
+.navbar-nav .nav-link {
+  display: inline-block;
+  color: var(--p-color);
+  font-size: var(--p-font-size);
+  font-weight: var(--font-weight-normal);
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* Animated underline on nav links */
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: var(--secondary-color);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* Dropdown */
+.dropdown-menu {
+  background: var(--white-color);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+  border: 0;
+  padding: 0;
+  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  color: var(--p-color);
+  font-size: var(--p-font-size);
+  font-weight: var(--font-weight-normal);
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.dropdown-item:hover {
+  background: transparent;
+  color: var(--primary-color);
+  padding-left: 24px;
+}
+
+@media screen and (min-width: 992px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown arrow icon */
+.dropdown-toggle::after {
+  content: "\f282";
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-size: var(--copyright-font-size);
+  font-style: normal;
+  font-weight: normal !important;
+  position: relative;
+  left: 2px;
+  border: 0;
+}
+
+/* Custom hamburger icon */
+.navbar-toggler {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  width: 30px;
+  height: 35px;
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background: var(--dark-color);
+  transition: background 10ms 300ms ease;
+  display: block;
+  width: 30px;
+  height: 2px;
+  position: relative;
+}
+
+.navbar-toggler .navbar-toggler-icon:before,
+.navbar-toggler .navbar-toggler-icon:after {
+  transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+  position: absolute;
+  right: 0;
+  left: 0;
+  background: var(--dark-color);
+  width: 30px;
+  height: 2px;
+  content: '';
+}
+
+.navbar-toggler .navbar-toggler-icon::before { top: -8px; }
+.navbar-toggler .navbar-toggler-icon::after  { top: 8px; }
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  transition: top 300ms 50ms ease, transform 300ms 350ms ease;
+  top: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+  transform: rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  transform: rotate(-45deg);
+}
+
+/* Contact button in navbar */
+.custom-btn {
+  background: var(--secondary-color);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-large);
+  color: var(--white-color) !important;
+  font-size: var(--btn-font-size);
+  font-weight: var(--font-weight-normal);
+  line-height: normal;
+  padding: 15px 25px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link.custom-btn {
+  color: var(--custom-btn-bg-color) !important;
+  margin-top: 8px;
+  padding: 12px 25px;
+}
+
+.custom-btn:hover {
+  background: var(--primary-color);
+  color: var(--white-color) !important;
+}
+
+.custom-border-btn {
+  background: transparent;
+  border: 2px solid var(--custom-btn-bg-color);
+  color: var(--primary-color) !important;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link.custom-btn:hover,
+.custom-border-btn:hover {
+  background: var(--custom-btn-bg-hover-color);
+  border-color: transparent;
+  color: var(--white-color) !important;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link.custom-btn::after {
+  display: none; /* no underline on button nav item */
+}
+
+/* ============================================================
+   SECTION 5: HERO HEADER
+   ============================================================ */
+.news-detail-header-section {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+.news-detail-header-section h1 {
+  font-size: var(--h1-font-size);
+  letter-spacing: -2px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   SECTION 6: NEWS / ARTICLE BLOCKS
+   ============================================================ */
+.news-block-top {
+  border-radius: var(--border-radius-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Zoom effect on hover for top images */
+.news-block-top img {
+  transition: transform 0.6s ease;
+}
+
+.news-block-top:hover img {
+  transform: scale(1.03);
+}
+
+.news-block-two-col-image-wrap {
+  border-radius: var(--border-radius-small);
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  min-width: 150px;
+  margin-right: 20px;
+}
+
+.news-category-block {
+  background: var(--secondary-color);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 10px 20px;
+  transform: translateY(0);
+  transition: background var(--transition-normal);
+}
+
+.news-category-block .category-block-link {
+  color: var(--white-color);
+  margin-right: 10px;
+}
+
+.news-block-info {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h5.news-block-title-link,
+h4.news-block-title-link,
+h6.news-block-title-link {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.news-block-date {
+  width: 200px;
+}
+
+/* ============================================================
+   SECTION 7: SIDEBAR COMPONENTS
+   ============================================================ */
+
+/* Section sub-headings with bottom border */
+.sidetexth5 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+/* Tag pills for Experience section */
+.tags-block-link {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  display: inline-block;
+  font-size: var(--copyright-font-size);
+  line-height: normal;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 8px 15px;
+  color: var(--p-color);
+  transition: border-color var(--transition-fast), color var(--transition-fast),
+              transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tags-block-link:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 41, 87, 0.1);
+}
+
+/* Category block */
+.category-block {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   SECTION 8: CONTACT FORM
+   ============================================================ */
+
+/* Form wrapper */
+.subscribe-form {
+  background: var(--section-bg-color);
+  border-radius: var(--border-radius-small);
+  padding: 30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* Individual field wrapper with floating label effect */
+.form-floating-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-floating-group label {
+  position: absolute;
+  top: 13px;
+  left: 16px;
+  font-size: 14px;
+  color: var(--p-color);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  opacity: 0; /* Hidden by default — placeholder handles it */
+}
+
+/* Show label above when field is focused or filled */
+.form-floating-group input:focus + label,
+.form-floating-group input:not(:placeholder-shown) + label,
+.form-floating-group textarea:focus + label,
+.form-floating-group textarea:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 11px;
+  color: var(--secondary-color);
+  background: var(--section-bg-color);
+  padding: 0 5px;
+  opacity: 1;
+}
+
+/* Form controls */
+.custom-form .form-control {
+  background-color: var(--white-color);
+  box-shadow: none;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  color: var(--p-color);
+  padding: 13px 16px;
+  outline: none;
+  font-size: var(--p-font-size);
+  font-family: var(--body-font-family);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal),
+              transform 0.15s ease;
+}
+
+.custom-form .form-control:hover {
+  border-color: rgba(0, 179, 116, 0.4);
+}
+
+.custom-form .form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(0, 179, 116, 0.15);
+  transform: scale(1.005);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Submit button */
+.submit-btn {
+  background: var(--custom-btn-bg-color) !important;
+  border: none !important;
+  border-radius: var(--border-radius-large) !important;
+  color: var(--white-color) !important;
+  font-size: var(--p-font-size) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  padding: 13px !important;
+  cursor: pointer !important;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition-normal), transform 0.15s ease,
+              box-shadow var(--transition-normal) !important;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.submit-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.submit-btn:hover {
+  background: var(--custom-btn-bg-hover-color) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 41, 87, 0.25) !important;
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Form feedback messages */
+.form-feedback {
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  animation: feedbackFadeIn 0.4s ease;
+}
+
+.form-feedback.success {
+  background: rgba(0, 179, 116, 0.1);
+  color: #006d47;
+  border: 1px solid rgba(0, 179, 116, 0.3);
+}
+
+.form-feedback.error {
+  background: rgba(220, 53, 69, 0.1);
+  color: #842029;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+@keyframes feedbackFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   SECTION 9: FOOTER
+   ============================================================ */
+.site-footer {
+  background-color: var(--site-footer-bg-color);
+  padding-top: 70px;
+}
+
+.site-footer-title {
+  color: var(--secondary-color);
+}
+
+.footer-menu {
+  column-count: 2;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-menu-item {
+  list-style: none;
+  display: block;
+}
+
+.footer-menu-link {
+  font-size: var(--p-font-size);
+  color: var(--white-color);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  position: relative;
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.footer-menu-link:hover {
+  color: var(--secondary-color);
+  padding-left: 5px;
+}
+
+.site-footer p.text-white {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: var(--font-weight-light);
+}
+
+/* ============================================================
+   SECTION 10: SCROLL ANIMATIONS
+   (Elements animate in when they scroll into view — handled by JS)
+   ============================================================ */
+
+/* Initial hidden state */
+.animate-left,
+.animate-right,
+.animate-hero {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.animate-left  { transform: translateX(-30px); }
+.animate-right { transform: translateX(30px); }
+.animate-hero  { transform: translateY(20px); }
+
+/* Revealed state */
+.animate-left.revealed,
+.animate-right.revealed,
+.animate-hero.revealed {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Stagger qualification cards */
+.news-block-two-col {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.news-block-two-col.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   SECTION 11: UTILITY
+   ============================================================ */
+.fontsize-12 { font-size: 12px; }
+.fontsize-25 { font-size: 25px; }
+
+.quotetext {
+  font-family: 'Bradley Hand ITC', 'Palatino', Georgia, serif;
+  font-style: italic;
+  letter-spacing: 1px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* ============================================================
+   SECTION 12: RESPONSIVE BREAKPOINTS
+   ============================================================ */
+@media screen and (max-width: 991px) {
+  h1 { font-size: 42px; }
+  h2 { font-size: 36px; }
+  h3 { font-size: 32px; }
+  h4 { font-size: 28px; }
+  h5 { font-size: 20px; }
+  h6 { font-size: 18px; }
+
+  .section-padding {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .news-detail-header-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .navbar {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    padding-bottom: 30px;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 8px 20px;
+  }
+
+  .navbar-nav .nav-link::after {
+    bottom: 4px;
+    left: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dropdown-menu {
+    box-shadow: none;
+    background: transparent !important;
+  }
+
+  .dropdown-menu li {
+    font-size: 14px !important;
+    margin-left: 10px;
+  }
+
+  .hide-mobile { display: none !important; }
+
+  .dropdown-menu li a {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 { font-size: 40px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 26px; }
+  h4 { font-size: 22px; }
+  h5 { font-size: 20px; }
+
+  .logo { width: 50px; }
+
+  .news-block-two-col-image-wrap {
+    width: 100px;
+    min-width: 100px;
+  }
+
+  .footer-menu { column-count: 1; }
+}

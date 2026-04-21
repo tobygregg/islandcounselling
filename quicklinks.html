@@ -66,23 +66,582 @@
 
     <!-- INDIVIDUAL COUNSELLING -->
     <div id="individual_counselling" class="page">    
-        <!-- Hero Header -->
-        <section class="news-detail-header-section text-center"
-                 style="background-image: url('images/gys8.jpg')">
-            <div class="section-overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div>
-                        <h1 class="text-white">Individual Counselling</h1>
-                    </div>
-                </div>
+        <!-- ============================================================
+     INDIVIDUAL COUNSELLING — main section only
+     Drop this between your <main> tags, after the nav.
+     Replace YOUR_FORM_ID with your Formspree ID.
+     Images: swap "images/individual-counselling.jpg" for your own.
+     ============================================================ -->
+
+<style>
+/* ---- Variables (match main site) ---- */
+:root {
+    --ic-primary:     #002957;
+    --ic-secondary:   #00b374;
+    --ic-section-bg:  #E6F4F1;
+    --ic-p:           #717275;
+    --ic-white:       #ffffff;
+    --ic-dark:        #000000;
+    --ic-radius-md:   20px;
+    --ic-radius-lg:   100px;
+    --ic-radius-sm:   10px;
+    --ic-font:        'Jost', sans-serif;
+    --ic-shadow-sm:   0 2px 15px rgba(0,0,0,0.07);
+    --ic-shadow-md:   0 8px 35px rgba(0,0,0,0.11);
+}
+
+/* ---- Hero split section ---- */
+.ic-hero {
+    padding: 100px 0 80px;
+    background: var(--ic-white);
+}
+
+.ic-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 64px;
+    align-items: center;
+}
+
+/* Image column */
+.ic-image-wrap {
+    position: relative;
+}
+
+.ic-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -14px -14px 14px 14px;
+    border-radius: 26px;
+    background: var(--ic-section-bg);
+    z-index: 0;
+    transition: transform 0.4s ease;
+}
+
+.ic-hero:hover .ic-image-wrap::before {
+    transform: translate(-4px, 4px);
+}
+
+.ic-image-wrap img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 22px;
+    display: block;
+    box-shadow: var(--ic-shadow-md);
+}
+
+/* Text column */
+.ic-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.ic-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--ic-font);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ic-secondary);
+    margin-bottom: 18px;
+}
+
+.ic-eyebrow span {
+    width: 32px;
+    height: 2px;
+    background: var(--ic-secondary);
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.ic-title {
+    font-family: var(--ic-font);
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -2.5px;
+    color: var(--ic-primary);
+    margin-bottom: 32px;
+}
+
+.ic-title em {
+    color: var(--ic-secondary);
+    font-style: normal;
+}
+
+.ic-divider {
+    width: 56px;
+    height: 3px;
+    background: var(--ic-secondary);
+    border-radius: 3px;
+    margin-bottom: 28px;
+}
+
+.ic-body-text {
+    font-family: var(--ic-font);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ic-p);
+    margin-bottom: 40px;
+}
+
+/* Quote block */
+.ic-quote-block {
+    background: var(--ic-section-bg);
+    border-left: 4px solid var(--ic-secondary);
+    border-radius: 0 14px 14px 0;
+    padding: 28px 32px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.ic-quote-mark {
+    font-family: Georgia, serif;
+    font-size: 72px;
+    line-height: 0.6;
+    color: var(--ic-secondary);
+    opacity: 0.35;
+    display: block;
+    margin-bottom: 10px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.ic-quote-text {
+    font-family: var(--ic-font);
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ic-primary);
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+
+.ic-quote-author {
+    font-family: var(--ic-font);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ic-secondary);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* CTA nudge */
+.ic-cta-nudge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--ic-font);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ic-p);
+}
+
+.ic-cta-nudge i { color: var(--ic-secondary); font-size: 16px; }
+
+
+/* ---- Contact Form section ---- */
+.ic-contact {
+    padding: 90px 0 100px;
+    background: var(--ic-section-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circles */
+.ic-contact::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: var(--ic-primary);
+    opacity: 0.04;
+    pointer-events: none;
+}
+
+.ic-contact::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -50px;
+    width: 220px; height: 220px;
+    border: 22px solid var(--ic-secondary);
+    border-radius: 50%;
+    opacity: 0.09;
+    pointer-events: none;
+}
+
+.ic-contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.ic-section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.ic-section-header h2 {
+    font-family: var(--ic-font);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: var(--ic-primary);
+    margin-bottom: 14px;
+}
+
+.ic-section-header p {
+    font-family: var(--ic-font);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ic-p);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Form card */
+.ic-form-card {
+    background: var(--ic-white);
+    border-radius: 24px;
+    padding: 50px 52px;
+    box-shadow: var(--ic-shadow-md);
+}
+
+.ic-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.ic-field {
+    display: block;
+    width: 100%;
+    background: var(--ic-section-bg);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--ic-dark);
+    font-family: var(--ic-font);
+    font-size: 15px;
+    font-weight: 400;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    outline: none;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ic-field::placeholder {
+    color: #a8acb0;
+    font-weight: 300;
+}
+
+.ic-field:hover { background: #ddf0ea; }
+
+.ic-field:focus {
+    background: var(--ic-white);
+    border-color: var(--ic-secondary);
+    box-shadow: 0 0 0 4px rgba(0,179,116,0.12);
+}
+
+textarea.ic-field {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.ic-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--ic-primary);
+    border: none;
+    border-radius: var(--ic-radius-lg);
+    color: var(--ic-white);
+    font-family: var(--ic-font);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 6px;
+}
+
+.ic-submit:hover {
+    background: #3F5689;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0,41,87,0.28);
+}
+
+.ic-submit:active { transform: translateY(0); }
+
+.ic-submit svg {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+}
+
+.ic-submit:hover svg { transform: translateX(4px); }
+
+/* Success / error states */
+.ic-form-msg {
+    display: none;
+    text-align: center;
+    padding: 18px 24px;
+    border-radius: 12px;
+    font-family: var(--ic-font);
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 16px;
+}
+
+.ic-form-msg.success {
+    display: block;
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.ic-form-msg.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* ---- Animate on scroll ---- */
+.ic-fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+    transition-delay: var(--d, 0s);
+}
+.ic-fade.ic-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 991px) {
+    .ic-hero { padding: 70px 0 60px; }
+
+    .ic-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+
+    .ic-image-wrap img { height: 380px; }
+
+    .ic-title { font-size: 46px; }
+
+    .ic-form-card { padding: 36px 32px; }
+}
+
+@media (max-width: 767px) {
+    .ic-hero { padding: 56px 0 50px; }
+    .ic-title { font-size: 38px; letter-spacing: -1.5px; }
+    .ic-body-text { font-size: 16px; }
+
+    .ic-image-wrap img { height: 300px; }
+
+    .ic-form-card { padding: 30px 24px; }
+    .ic-form-row { grid-template-columns: 1fr; gap: 0; }
+
+    .ic-section-header h2 { font-size: 34px; }
+    .ic-contact { padding: 60px 0 70px; }
+}
+
+@media (max-width: 480px) {
+    .ic-title { font-size: 32px; }
+    .ic-image-wrap::before { display: none; }
+    .ic-image-wrap img { height: 260px; border-radius: 16px; }
+    .ic-form-card { padding: 24px 18px; }
+}
+</style>
+
+<!-- ========== HERO SPLIT ========== -->
+<section class="ic-hero">
+    <div class="container">
+        <div class="ic-hero-inner">
+
+            <!-- Left: image -->
+            <div class="ic-image-wrap ic-fade" style="--d:0s">
+                <!-- Swap this src for your own portrait image -->
+                <img src="images/individual-counselling.jpg"
+                     alt="A calm counselling session in Guernsey">
             </div>
-        </section>
-        <!-- Contentt -->
-        <div style="text-align: center; padding: 40px;">
-            <h1>Individual Counselling</h1>
-            <p>Here will be the info on Individual Counselling</p>
+
+            <!-- Right: text -->
+            <div class="ic-text-col">
+
+                <span class="ic-eyebrow ic-fade" style="--d:0.1s">
+                    <span></span> Our Services
+                </span>
+
+                <h1 class="ic-title ic-fade" style="--d:0.2s">
+                    Individual<br><em>Counselling</em>
+                </h1>
+
+                <div class="ic-divider ic-fade" style="--d:0.28s"></div>
+
+                <p class="ic-body-text ic-fade" style="--d:0.35s">
+                    Is for you if you are at a stage in life where you know change needs to
+                    happen. You may be feeling overwhelmed with what is before you or you may
+                    be looking for a place to gently explore options. Wherever you find yourself
+                    we invite you to contact us, ask questions and find the therapist who fits
+                    you best.
+                </p>
+
+                <!-- Quote -->
+                <div class="ic-quote-block ic-fade" style="--d:0.45s">
+                    <span class="ic-quote-mark">"</span>
+                    <p class="ic-quote-text">
+                        I was always looking outside myself for strength and confidence but it
+                        comes from within. It's there all the time.
+                    </p>
+                    <span class="ic-quote-author">— Anna Freud</span>
+                </div>
+
+                <p class="ic-cta-nudge ic-fade" style="--d:0.55s">
+                    <i class="bi bi-arrow-down-circle-fill"></i>
+                    Ready to take the first step? Get in touch below.
+                </p>
+
+            </div>
         </div>
+    </div>
+</section>
+
+
+<!-- ========== CONTACT FORM ========== -->
+<section class="ic-contact">
+    <div class="container">
+        <div class="ic-contact-inner">
+
+            <div class="ic-section-header ic-fade" style="--d:0s">
+                <h2>Get in Touch</h2>
+                <p>Please share a little about your situation and we will match you with the right counsellor for you.</p>
+            </div>
+
+            <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
+            <form class="ic-form-card ic-fade" style="--d:0.1s"
+                  id="icContactForm"
+                  action="https://formspree.io/f/YOUR_FORM_ID"
+                  method="POST">
+
+                <div class="ic-form-row">
+                    <input type="text" name="first-name" class="ic-field"
+                           placeholder="First Name" required>
+                    <input type="text" name="last-name" class="ic-field"
+                           placeholder="Surname" required>
+                </div>
+
+                <input type="email" name="email" class="ic-field"
+                       placeholder="Email Address" required>
+
+                <input type="tel" name="phone" class="ic-field"
+                       placeholder="Phone Number (optional)">
+
+                <textarea name="message" class="ic-field"
+                          placeholder="Tell us a little about what you're looking for…"
+                          required></textarea>
+
+                <button type="submit" class="ic-submit">
+                    Send Message
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+
+                <div class="ic-form-msg success" id="icSuccess">
+                    ✅ Message sent! We'll be in touch with you shortly.
+                </div>
+                <div class="ic-form-msg error" id="icError">
+                    ❌ Something went wrong. Please try again or contact us directly.
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========== Section JS (inline, self-contained) ========== -->
+<script>
+(function () {
+    /* -- Scroll animations -- */
+    const faders = document.querySelectorAll('.ic-fade');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('ic-visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+    faders.forEach(el => obs.observe(el));
+
+    /* -- Form submission (AJAX to Formspree) -- */
+    const form    = document.getElementById('icContactForm');
+    const success = document.getElementById('icSuccess');
+    const error   = document.getElementById('icError');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const action = form.action;
+            if (action.includes('YOUR_FORM_ID')) {
+                alert('⚠️  Please set your Formspree form ID in the action attribute.');
+                return;
+            }
+
+            const btn = form.querySelector('.ic-submit');
+            const original = btn.innerHTML;
+            btn.innerHTML = 'Sending…';
+            btn.disabled = true;
+
+            try {
+                const resp = await fetch(action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (resp.ok) {
+                    success.style.display = 'block';
+                    error.style.display = 'none';
+                    form.reset();
+                } else {
+                    throw new Error('Network error');
+                }
+            } catch (_) {
+                error.style.display = 'block';
+                success.style.display = 'none';
+            } finally {
+                btn.innerHTML = original;
+                btn.disabled = false;
+            }
+        });
+    }
+})();
+</script>
     </div>
 
     <!-- COUPLES COUNSELLING -->

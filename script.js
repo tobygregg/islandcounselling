@@ -72,14 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* -----------------------------------------------
-       4. HERO CAROUSEL — animate caption on each slide
-       ----------------------------------------------- */
-    const heroCarousel = document.getElementById('heroCarousel');
+   4. HERO CAROUSEL — smooth caption animation
+----------------------------------------------- */
+const heroCarousel = document.getElementById('heroCarousel');
 
 if (heroCarousel) {
-    heroCarousel.addEventListener('slid.bs.carousel', () => {
-        const captions = heroCarousel.querySelectorAll('.caption-inner');
 
+    // Animate first slide on page load
+    window.addEventListener('load', () => {
+        const firstCaption = heroCarousel.querySelector('.carousel-item.active .caption-inner');
+        if (firstCaption) firstCaption.classList.add('animate');
+    });
+
+    // Animate on slide change
+    heroCarousel.addEventListener('slid.bs.carousel', () => {
+
+        const captions = heroCarousel.querySelectorAll('.caption-inner');
         captions.forEach(c => c.classList.remove('animate'));
 
         const activeItem = heroCarousel.querySelector('.carousel-item.active');
@@ -88,11 +96,10 @@ if (heroCarousel) {
         if (activeCaption) {
             setTimeout(() => {
                 activeCaption.classList.add('animate');
-            }, 50); // tiny delay = smooth restart
+            }, 100); // smooth timing
         }
     });
 }
-
 
     /* -----------------------------------------------
        5. SERVICE BLOCKS — subtle 3-D tilt on hover

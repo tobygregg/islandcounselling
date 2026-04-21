@@ -76,20 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
        ----------------------------------------------- */
     const heroCarousel = document.getElementById('heroCarousel');
 
-    if (heroCarousel) {
-        heroCarousel.addEventListener('slid.bs.carousel', () => {
-            const activeItem = heroCarousel.querySelector('.carousel-item.active');
-            if (!activeItem) return;
+if (heroCarousel) {
+    heroCarousel.addEventListener('slid.bs.carousel', () => {
+        const captions = heroCarousel.querySelectorAll('.caption-inner');
 
-            const captionInner = activeItem.querySelector('.caption-inner');
-            if (captionInner) {
-                // Reset animation
-                captionInner.style.animation = 'none';
-                captionInner.offsetHeight; // Force reflow
-                captionInner.style.animation = '';
-            }
-        });
-    }
+        captions.forEach(c => c.classList.remove('animate'));
+
+        const activeItem = heroCarousel.querySelector('.carousel-item.active');
+        const activeCaption = activeItem?.querySelector('.caption-inner');
+
+        if (activeCaption) {
+            setTimeout(() => {
+                activeCaption.classList.add('animate');
+            }, 50); // tiny delay = smooth restart
+        }
+    });
+}
 
 
     /* -----------------------------------------------

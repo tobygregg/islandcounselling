@@ -525,60 +525,49 @@ textarea.ic-field {
 </section>
 
 
-<!-- ========== CONTACT FORM ========== -->
-<section class="ic-contact">
-    <div class="container">
-        <div class="ic-contact-inner">
+<!-- ========== CONTACT SECTION ========== -->
+        <section class="contact-section section-padding" id="contact_section">
+            <div class="contact-overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-12 mx-auto">
 
-            <div class="ic-section-header ic-fade" style="--d:0s">
-                <h2>Get in Touch</h2>
-                <p>Please share a little about your situation and we will match you with the right counsellor for you.</p>
+                        <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+                        <form class="contact-form animate-on-scroll" style="--delay: 0s"
+                              action="https://formspree.io/f/YOUR_FORM_ID"
+                              method="POST">
+
+                            <h2>Contact Us</h2>
+                            <p class="mb-2">Please message us with a little information about your situation and/or counselling requests.</p>
+                            <p class="mb-4">Alternatively, you may want to contact one of our counsellors directly.</p>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <input type="text" name="first-name" class="form-field"
+                                           placeholder="First Name" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <input type="text" name="last-name" class="form-field"
+                                           placeholder="Surname" required>
+                                </div>
+                            </div>
+
+                            <input type="email" name="email" class="form-field"
+                                   placeholder="Email Address" required>
+
+                            <textarea name="message" rows="5" class="form-field"
+                                      placeholder="What can we help you with?" required></textarea>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="bi bi-send-fill me-2"></i>Send Message
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
             </div>
-
-            <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
-            <form class="ic-form-card ic-fade" style="--d:0.1s"
-                  id="icContactForm"
-                  action="https://formspree.io/f/YOUR_FORM_ID"
-                  method="POST">
-
-                <div class="ic-form-row">
-                    <input type="text" name="first-name" class="ic-field"
-                           placeholder="First Name" required>
-                    <input type="text" name="last-name" class="ic-field"
-                           placeholder="Surname" required>
-                </div>
-
-                <input type="email" name="email" class="ic-field"
-                       placeholder="Email Address" required>
-
-                <input type="tel" name="phone" class="ic-field"
-                       placeholder="Phone Number (optional)">
-
-                <textarea name="message" class="ic-field"
-                          placeholder="Tell us a little about what you're looking for…"
-                          required></textarea>
-
-                <button type="submit" class="ic-submit">
-                    Send Message
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                    </svg>
-                </button>
-
-                <div class="ic-form-msg success" id="icSuccess">
-                    ✅ Message sent! We'll be in touch with you shortly.
-                </div>
-                <div class="ic-form-msg error" id="icError">
-                    ❌ Something went wrong. Please try again or contact us directly.
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-</section>
+        </section>
 
 
 <!-- ========== Section JS (inline, self-contained) ========== -->

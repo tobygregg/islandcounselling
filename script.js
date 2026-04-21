@@ -72,32 +72,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* -----------------------------------------------
-   HERO CAROUSEL — clean animation (NO GLITCH)
------------------------------------------------ */
-const heroCarousel = document.getElementById('heroCarousel');
-
-if (heroCarousel) {
-
-    const animateCaption = (carousel) => {
-        const active = carousel.querySelector('.carousel-item.active .caption-inner');
-        if (!active) return;
-
-        // Force restart animation cleanly
-        active.classList.remove('animate');
-        void active.offsetWidth; // 🔥 force reflow (this is the magic)
-        active.classList.add('animate');
-    };
-
-    // Run on first load
-    window.addEventListener('load', () => {
-        animateCaption(heroCarousel);
-    });
-
-    // Run ONLY when slide STARTS (not after)
-    heroCarousel.addEventListener('slide.bs.carousel', () => {
-        animateCaption(heroCarousel);
-    });
-}
+       4. HERO CAROUSEL — animate caption on each slide
+       ----------------------------------------------- */
+    const heroCarousel = document.getElementById('heroCarousel');
+ 
+    if (heroCarousel) {
+        heroCarousel.addEventListener('slid.bs.carousel', () => {
+            const activeItem = heroCarousel.querySelector('.carousel-item.active');
+            if (!activeItem) return;
+ 
+            const captionInner = activeItem.querySelector('.caption-inner');
+            if (captionInner) {
+                // Reset animation
+                captionInner.style.animation = 'none';
+                captionInner.offsetHeight; // Force reflow
+                captionInner.style.animation = '';
+            }
+        });
+    }
 
     /* -----------------------------------------------
        5. SERVICE BLOCKS — subtle 3-D tilt on hover

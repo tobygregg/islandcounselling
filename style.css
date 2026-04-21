@@ -375,9 +375,9 @@ small { font-size: 12px; }
     padding: 20px;
 }
 
+/* Caption animation (SAFE VERSION) */
 .caption-inner {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1; /* ALWAYS visible by default */
 }
 
 .caption-inner.animate {
@@ -385,6 +385,10 @@ small { font-size: 12px; }
 }
 
 @keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);

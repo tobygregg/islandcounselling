@@ -786,3 +786,17 @@ textarea.form-control {
 
   .footer-menu { column-count: 1; }
 }
+
+.page {
+  display: none;
+}
+
+#home:target,
+#about:target {
+  display: block;
+}
+
+/* default page */
+body:not(:has(:target)) #home {
+  display: block;
+}

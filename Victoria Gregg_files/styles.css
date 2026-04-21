@@ -791,8 +791,8 @@ textarea.form-control {
   display: none;
 }
 
-#home:target,
-#about:target {
+#individual_counselling:target,
+#couples_counselling:target {
   display: block;
 }
 

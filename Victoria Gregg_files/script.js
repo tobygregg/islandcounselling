@@ -183,3 +183,37 @@
     });
   });
 })();
+
+
+
+/* -----------------------------------------------
+       6. CONTACT FORM — feedback on submission
+       ----------------------------------------------- */
+    const contactForm = document.querySelector('.contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            const action = contactForm.getAttribute('action');
+
+            // Only intercept if a real Formspree ID is set (not placeholder)
+            if (!action || action.includes('YOUR_FORM_ID')) {
+                e.preventDefault();
+                alert('⚠️  Please configure your Formspree form ID in index.html before the form can send messages.');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            if (submitBtn) {
+                const original = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Sending…';
+                submitBtn.disabled = true;
+
+                // Re-enable after a timeout as fallback
+                setTimeout(() => {
+                    submitBtn.innerHTML = original;
+                    submitBtn.disabled = false;
+                }, 8000);
+            }
+        });
+    }

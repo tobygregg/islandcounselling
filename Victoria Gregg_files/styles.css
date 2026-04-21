@@ -792,7 +792,15 @@ textarea.form-control {
 }
 
 #individual_counselling:target,
-#couples_counselling:target {
+#couples_counselling:target,
+#children_and_young_people:target,
+#continuing_professional_development:target,
+#counsellor_supervision:target,
+#spiritual_direction:target,
+#moreinfo:target,
+#confidentiality:target,
+#insurance:target,
+#tandc:target{
   display: block;
 }
 

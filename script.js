@@ -71,33 +71,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    /* -----------------------------------------------
-   4. HERO CAROUSEL — smooth caption animation
+/* -----------------------------------------------
+   HERO CAROUSEL — clean animation (NO GLITCH)
 ----------------------------------------------- */
 const heroCarousel = document.getElementById('heroCarousel');
 
 if (heroCarousel) {
 
-    // Animate first slide on page load
+    const animateCaption = (carousel) => {
+        const active = carousel.querySelector('.carousel-item.active .caption-inner');
+        if (!active) return;
+
+        // Force restart animation cleanly
+        active.classList.remove('animate');
+        void active.offsetWidth; // 🔥 force reflow (this is the magic)
+        active.classList.add('animate');
+    };
+
+    // Run on first load
     window.addEventListener('load', () => {
-        const firstCaption = heroCarousel.querySelector('.carousel-item.active .caption-inner');
-        if (firstCaption) firstCaption.classList.add('animate');
+        animateCaption(heroCarousel);
     });
 
-    // Animate on slide change
-    heroCarousel.addEventListener('slid.bs.carousel', () => {
-
-        const captions = heroCarousel.querySelectorAll('.caption-inner');
-        captions.forEach(c => c.classList.remove('animate'));
-
-        const activeItem = heroCarousel.querySelector('.carousel-item.active');
-        const activeCaption = activeItem?.querySelector('.caption-inner');
-
-        if (activeCaption) {
-            setTimeout(() => {
-                activeCaption.classList.add('animate');
-            }, 100); // smooth timing
-        }
+    // Run ONLY when slide STARTS (not after)
+    heroCarousel.addEventListener('slide.bs.carousel', () => {
+        animateCaption(heroCarousel);
     });
 }
 

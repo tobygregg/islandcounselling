@@ -826,7 +826,8 @@ body:not(:has(:target)) #home {
   height: 580px;
   object-fit: cover;
   border-radius: 22px;
-  vertical-align: top;
+  display: flex;
+  align-items: flex-start; /* Aligns items to the top */
 }
 
 .ic-title {

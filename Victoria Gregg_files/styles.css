@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ============================================================
-   SECTION 1: CSS VARIABLES (change these to retheme the site)
+   SECTION 1: CSS VARIABLES (change these to retheme the site) 
    ============================================================ */
 :root {
   --white-color:                #ffffff;
@@ -826,6 +826,7 @@ body:not(:has(:target)) #home {
   height: 580px;
   object-fit: cover;
   border-radius: 22px;
+  vertical-align: top;
 }
 
 .ic-title {

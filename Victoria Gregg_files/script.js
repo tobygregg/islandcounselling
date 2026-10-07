@@ -26,41 +26,31 @@
 
 
 /* ============================================================
-   2. SCROLL ANIMATIONS (Intersection Observer)
+   2. PAGE-LOAD ANIMATIONS
       Elements with .animate-left, .animate-right, .animate-hero,
-      and .news-block-two-col will fade in as they scroll into view.
+      and .news-block-two-col fade in as soon as the page loads
+      (no need to scroll). Qualification cards stagger slightly.
    ============================================================ */
-(function initScrollAnimations() {
+(function initLoadAnimations() {
   const animatedEls = document.querySelectorAll(
     '.animate-left, .animate-right, .animate-hero, .news-block-two-col'
   );
 
   if (!animatedEls.length) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          // Stagger cards slightly when multiple appear at once
-          const delay = entry.target.classList.contains('news-block-two-col')
-            ? i * 80
-            : 0;
-
-          setTimeout(() => {
-            entry.target.classList.add('revealed');
-          }, delay);
-
-          observer.unobserve(entry.target); // only animate once
-        }
+  // Wait two frames so the hidden start state is painted first,
+  // otherwise the browser skips the transition.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      let cardIndex = 0;
+      animatedEls.forEach((el) => {
+        const delay = el.classList.contains('news-block-two-col')
+          ? 120 + (cardIndex++) * 70
+          : 0;
+        setTimeout(() => el.classList.add('revealed'), delay);
       });
-    },
-    {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    }
-  );
-
-  animatedEls.forEach(el => observer.observe(el));
+    });
+  });
 })();
 
 

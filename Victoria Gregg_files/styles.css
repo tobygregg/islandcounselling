@@ -186,6 +186,7 @@ em {
 .brand-text {
     display: inline-block;
     vertical-align: middle;
+    margin-left: 10px; /* gap from logo; keeps title + green subtext left-aligned */
 }
 
 .brand-text small {
